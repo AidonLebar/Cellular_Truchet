@@ -13,6 +13,7 @@ rec_frame = 0
 single_frame = 0
 reset = 0
 pause = 0
+zeroes = 1
 
 def tile0(x,y):
     row = y_step * x
@@ -149,16 +150,18 @@ def draw():
     else:
         for i in range(n):
             for j in range(n):
-                gn = get_neighborhood(i,j)
-                tile = tiles[gn]
-                tile(i,j)
+                if zeroes == 1 or grid[i][j] == 1:
+                    gn = get_neighborhood(i,j)
+                    tile = tiles[gn]
+                    tile(i,j)
     if rec == 1:
         saveFrame("frame_temp/frame-{0:03d}.png".format(rec_frame))
         rec_frame += 1
     
 
 def keyPressed():
-    global rec, reset, pause, single_frame
+    global rec, reset, pause, single_frame, \
+           zeroes
     if (key == 's'): #start recording
         if rec == 0:
             print("Start recording")
@@ -177,4 +180,9 @@ def keyPressed():
             pause = 1
         else:
             pause = 0
+    if (key == '0'):
+        if zeroes == 0:
+            zeroes = 1
+        else:
+            zeroes = 0
     
