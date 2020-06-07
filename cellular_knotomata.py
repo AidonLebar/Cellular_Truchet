@@ -1,6 +1,6 @@
 from random import randint
 
-n = 9
+n = 6
 
 grid = []
 y_step = 0
@@ -182,7 +182,9 @@ def keyPressed():
             pause = 0
     if (key == '0'):
         if zeroes == 0:
+            print("0 value cells will be shown")
             zeroes = 1
         else:
+            print("0 value cells will not be shown")
             zeroes = 0
     
